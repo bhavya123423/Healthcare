@@ -26,11 +26,14 @@ public class HealthServiceImpl implements HealthService{
 		{
 	   throw new HealthException("Center name should contain only alphabets");
 		}
+		
 		Random random = new Random();
 		int centerid = random.nextInt(100)+1000;
 		String s=Integer.toString(centerid);
 		center.setCenterId(s);
+		
 		healthDao.addCenter(center);
+		
 		return false;
 	}
 	public boolean removeTest(Test test) throws HealthException {

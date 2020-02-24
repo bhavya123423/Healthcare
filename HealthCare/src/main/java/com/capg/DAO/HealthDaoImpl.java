@@ -16,14 +16,13 @@ import com.capg.DTO.DiagnosticCenter;
 import com.capg.DTO.Test;
 import com.capg.HealthException.HealthException;
 public class HealthDaoImpl implements HealthDao {
-	private Map<String,Test> map;
-	private	HashMap<String,DiagnosticCenter> centerMap;
-	private	HashMap<String,Appointment> appointmentMap;
+HashMap<String,DiagnosticCenter> centerMap;
+HashMap<String,Appointment> appointmentMap;
 		public HealthDaoImpl()
 		{
 			centerMap=new HashMap<String,DiagnosticCenter>();
 			/*appointmentMap=new HashMap<String,Appointment>();*/
-			DiagnosticCenter center= new DiagnosticCenter("Bhavani","8001", null,null);
+			DiagnosticCenter center= new DiagnosticCenter("apollo","8001", null,null);
 			List<Test>list=new ArrayList<Test>();
 			Test test=new Test();
 			test.setTestId("1000");
@@ -42,11 +41,16 @@ public class HealthDaoImpl implements HealthDao {
 			
 		}
 	@Override
-	public boolean addCenter(DiagnosticCenter center) throws HealthException {
+	public boolean addCenter(DiagnosticCenter center) throws HealthException 
 		{
-			if(centerMap.containsKey(center.getCenterId()))
+		if(centerMap.containsKey(center.getCenterName()))
+			try
 			{
 				throw new HealthException("center already exist");
+			}
+			catch(HealthException e)
+			{
+				e.printStackTrace();
 			}
 			else
 			{
@@ -64,29 +68,23 @@ public class HealthDaoImpl implements HealthDao {
 				test2.setTestName("blood pressure");
 				list.add(test2);
 				center.setListOfTests(list);
-				
-				centerMap.put(center.getCenterId(), center);
+			    centerMap.put(center.getCenterId(), center);
+			    
 		}
 	return true; 
 		}
-		}
-	
 	@Override
 	public boolean removeTest(Test testId) throws HealthException {
-		
 		HashMap<String,Integer> mymap=new HashMap<String,Integer>();
 		mymap.put("ECG",1);
-	
-		mymap.put("ENT",2);
+        mymap.put("ENT",2);
 		mymap.put("Thyroid",3);
 		System.out.println(mymap);
-		System.out.println("Enter the test to be removed");
 		Scanner scanner=new Scanner(System.in);
+		System.out.println("Enter the test to be removed");
 		String t=scanner.next();
-		 
-		mymap.remove(t);
+		 mymap.remove(t);
 		System.out.println(mymap);
-		
 		return true;
 	}
 	@Override

@@ -5,7 +5,7 @@ public class User {
 	List<DiagnosticCenter> centerList;
 	public User(String userId, List<DiagnosticCenter> centerList) {
 		super();
-		UserId = userId;
+		this.UserId = userId;
 		this.centerList = centerList;
 	}
 	public User() {
@@ -15,7 +15,7 @@ public class User {
 		return UserId;
 	}
 	public void setUserId(String userId) {
-		UserId = userId;
+		this.UserId = userId;
 	}
 	public List<DiagnosticCenter> getCenterList() {
 		return centerList;

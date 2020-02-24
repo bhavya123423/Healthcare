@@ -11,20 +11,14 @@ import com.capg.HealthException.HealthException;
 import com.capg.Service.HealthService;
 import com.capg.Service.HealthServiceImpl;
 public class Client {
-	public static void main(String[] args) throws HealthException {
-		Scanner scanner=new Scanner(System.in);
+public static void main(String[] args) throws HealthException {
+        Scanner scanner=new Scanner(System.in);
 		HealthService healthservice=new HealthServiceImpl();
 		ArrayList<Test>listofTests =new ArrayList<Test>();
-		HashMap<String,Integer> mymap=new HashMap<String,Integer>();
-		mymap.put("ECG",1);
-	
-		mymap.put("ENT",2);
-		mymap.put("Thyroid",3);
 		int choice=0;
 		Test test=new Test();
 		while(choice!=4)
 		{		
-			
 		System.out.println("1.Add Center");
 		System.out.println("2.Display Center");
 		System.out.println("3.Remove Test");
@@ -34,18 +28,17 @@ public class Client {
 			choice = scanner.nextInt();
 		}
 		catch(InputMismatchException e) {
-			System.err.println("Input should be in Integer");
-			break;}
+			System.out.println("Input should be in Integer");
+			break;
+			
+		}
+		 switch(choice)
 		 
-		
-		
-		
-		switch(choice)
 		{
 		case 1:
 			try
 			{
-				DiagnosticCenter dc=new DiagnosticCenter();
+			DiagnosticCenter dc=new DiagnosticCenter();
 			System.out.println("Enter center name");
 			scanner.nextLine();
 			String centerName=scanner.nextLine();
@@ -57,7 +50,7 @@ public class Client {
 			}
 			catch(Exception er)
 			{
-				System.err.println(er.getMessage());
+				System.out.println(er.getMessage());
 			}
 			break;
 		case 2:
@@ -81,18 +74,15 @@ public class Client {
 			
 			catch(Exception err)
 			{
-				System.err.println(err.getMessage());
+				System.out.println(err.getMessage());
 			}
 			break;
 			case 3:
+				System.out.println("Enter center name");
+				scanner.next();
 				healthservice.removeTest(test);
-				boolean flag= mymap.containsKey(test);
-				if(!flag)
-				{
-					System.out.println("Test is not present");
-				}
-				break;
-			default :
+				
+			case 4 :
 				System.out.println("Thank you");
 				
 	        	
